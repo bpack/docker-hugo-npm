@@ -6,8 +6,11 @@ build:
 	docker build -t $(OWNER)/$(REPO):$(VERSION) .
 
 push:
+	docker login -u $(OWNER)
 	docker push $(OWNER)/$(REPO):$(VERSION)
 
-sh:
+shell:
 	docker run --rm -i -t $(OWNER)/$(REPO):$(VERSION) /bin/bash
 
+rmi:
+	docker rmi -f $(OWNER)/$(REPO)
