@@ -5,11 +5,11 @@ VERSION ?= latest
 build:
 	docker build -t $(OWNER)/$(REPO):$(VERSION) .
 
-push:
+push: build
 	docker login -u $(OWNER)
 	docker push $(OWNER)/$(REPO):$(VERSION)
 
-shell:
+shell: build
 	docker run --rm -i -t $(OWNER)/$(REPO):$(VERSION) /bin/bash
 
 rmi:

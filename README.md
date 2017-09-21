@@ -6,3 +6,5 @@ The latest image is available at [https://hub.docker.com/r/bpack/hugo-npm/](http
 * `make push` - Publish the image.
 * `make shell` - Run a shell in the image.
 * `make rmi` - Force remove the image locally.
+
+The default version of 'latest' for the image can be overridden for the purposes of tagging by specifying `make VERSION=x.x.x build`. The same would need to be done for the `push` target to upload the image.
