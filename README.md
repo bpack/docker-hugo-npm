@@ -8,3 +8,5 @@ The latest image is available at [https://hub.docker.com/r/bpack/hugo-npm/](http
 * `make rmi` - Force remove the image locally.
 
 The default version of 'latest' for the image can be overridden for the purposes of tagging by specifying `make VERSION=x.x.x build`. The same would need to be done for the `push` target to upload the image.
+
+Details on how I use this image can be found at [https://www.benjaminpack.com/blog/hugo-site-automation](https://www.benjaminpack.com/blog/hugo-site-automation/).
