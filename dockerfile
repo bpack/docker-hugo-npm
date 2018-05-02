@@ -1,9 +1,9 @@
 FROM alpine:3.6
 MAINTAINER Benjamin Pack <mail@benjaminpack.com>
 
-ARG HUGO_VER=0.31.1
-ARG HUGO_SHA=2ec6fd0493fa246a5747b0f1875d94affaaa30f11715f26abcbe1bc91c940716
-ARG HUGO_URL=https://github.com/spf13/hugo/releases/download
+ARG HUGO_VER=0.40.2
+ARG HUGO_SHA=377b9b0d313556690d376e28cecf216c3e61f1e13c631ebf86068f892ca07709
+ARG HUGO_URL=https://github.com/gohugoio/hugo/releases/download
 ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
 
 RUN apk update && apk upgrade
