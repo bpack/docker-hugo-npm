@@ -1,29 +1,24 @@
-FROM alpine:3.6
+FROM debian:buster-slim
 MAINTAINER Benjamin Pack <mail@benjaminpack.com>
 
-ARG HUGO_VER=0.76.5
-ARG HUGO_SHA=38f1d92fb8219168e684f0b82faef3aea0f3d1bd89752ec2179b41fb9eceea17
+ARG HUGO_VER=0.78.1
+ARG HUGO_SHA=5640a2ff09f6ac6c860059f1fcf76d8e91575f81fdd94d8be3be8fc88be7a158
 ARG HUGO_URL=https://github.com/gohugoio/hugo/releases/download
-ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
+ARG HUGO_PKG=hugo_extended_${HUGO_VER}_Linux-64bit.deb
 
-RUN apk update && apk upgrade
-RUN apk add --update --no-cache \
-    bash \
-    ca-certificates \
+RUN apt update && apt install -y \
     curl \
     git \
-    openssh-client \
     nodejs \
-    nodejs-npm \
+    npm \
     python \
-    py-pip
+    python-pip
 
 RUN pip install --upgrade pip
 RUN pip install Pygments
 
-RUN curl -Ls ${HUGO_URL}/v${HUGO_VER}/${HUGO_TGZ} -o /tmp/hugo.tar.gz \
-    && echo "${HUGO_SHA}  /tmp/hugo.tar.gz" | sha256sum -c - \
-    && tar xf /tmp/hugo.tar.gz -C /tmp \
-    && mv /tmp/hugo /usr/bin/hugo \
+RUN curl -Ls ${HUGO_URL}/v${HUGO_VER}/${HUGO_PKG} -o /tmp/${HUGO_PKG} \
+    && echo "${HUGO_SHA}  /tmp/${HUGO_PKG}" | sha256sum -c - \
+    && dpkg -i "/tmp/${HUGO_PKG}" \
     && rm -rf /tmp/hugo*
 
